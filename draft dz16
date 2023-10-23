@@ -1,0 +1,65 @@
+class Train:
+    def __init__(self, locomotive):
+        self.locomotive = locomotive
+        self.train_cars = []
+
+    def add_train_car(self, car):
+        self.train_cars.append(car)
+
+    def __len__(self):
+        return len(self.train_cars)
+
+    def __str__(self):
+        train_data = {}
+        for i, car in enumerate(self.train_cars):
+            train_data[f'traincar{i + 1}'] = str(car)
+        return str(train_data)
+
+
+class TrainCar:
+    def __init__(self, car_num, max_passengers=10):
+        self.car_num = car_num
+        self.passengers = []
+        self.max_passengers = max_passengers
+
+    def add_passenger(self, passenger_name, destination, place):
+        if len(self.passengers) <= self.max_passengers:
+            self.passengers.append({
+                "passenger name: ": passenger_name,
+                "destination: ": destination,
+                "place: ": place
+            })
+        else:
+            print(f"Train car {self.car_num} is full. Choose other cart for {passenger_name}")
+
+    def __len__(self):
+        return len(self.passengers)
+
+    def __str__(self):
+        car_data = {"traincar": str(self.car_num)}
+        for i, passenger in enumerate(self.passengers):
+            for key, value in passenger.items():
+                car_data[f'{key}{i + 1}'] = value
+        return str(car_data)
+
+
+locomotive = TrainCar(0, 0)
+train = Train(locomotive)
+
+train_car1 = TrainCar(1)
+train_car2 = TrainCar(2)
+train_car3 = TrainCar(3)
+
+train_car1.add_passenger("Pavlo Zibrov", "Lviv", 3)
+train_car1.add_passenger("Stepan Giga", "Lutsk", 4)
+train_car2.add_passenger("Ivo Bobul", "Kyiv", 1)
+train_car2.add_passenger("Oksana Bilozir", "Zhytomyr", 7)
+
+train.add_train_car(1)
+train.add_train_car(2)
+train.add_train_car(3)
+
+print(train_car1)
+print(train_car2)
+print(train_car3)
+print(train)
