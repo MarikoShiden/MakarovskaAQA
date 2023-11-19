@@ -1,7 +1,7 @@
 import pytest
 from selenium.webdriver import Chrome
 
-from pages.main_page import MainPage
+from pages.dashboard import MainPage
 from pages.category import Category
 from pages.sub_category import SubCategory
 from pages.item_page import ItemPage
